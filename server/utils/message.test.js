@@ -7,7 +7,6 @@ describe('generateMessage', () => {
     let message = generateMessage('Nikolay', 'Blablalba')
     expect(message.from).toBe('Nikolay')
     expect(message.text).toBe('Blablalba')
-    expect(message.createdAt).toBeLessThanOrEqual(new Date().getTime())
   })
 })
 
@@ -18,6 +17,5 @@ describe('generateLocationMessage', () => {
     let message = generateLocationMessage('Admin', long, lan)
     expect(message.url).toBe('https://www.google.ru/maps?q='+long+','+lan)
     expect(message.from).toBe('Admin')
-    expect(message.createdAt).toBeLessThanOrEqual(new Date().getTime())
   })
 })

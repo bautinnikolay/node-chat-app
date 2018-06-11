@@ -9,14 +9,14 @@ socket.on('disconnect', function () {
 
 socket.on('newMessage', function (message) {
   let li = jQuery('<li></li>')
-  li.text(`${message.from}: ${message.text}`)
+  li.text(`${message.createdAt} ${message.from}: ${message.text}`)
   jQuery('#messages').append(li)
 })
 
 socket.on('newLocationMessage', function (message) {
   let li = jQuery('<li></li>')
   let link = jQuery('<a target="_blank">See on map</a>').attr('href', message.url)
-  li.text(`${message.from}: `)
+  li.text(`${message.createdAt} ${message.from}: `)
   li.append(link)
   jQuery('#messages').append(li)
 })
