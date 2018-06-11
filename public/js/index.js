@@ -8,17 +8,23 @@ socket.on('disconnect', function () {
 })
 
 socket.on('newMessage', function (message) {
-  let li = jQuery('<li></li>')
-  li.text(`${message.createdAt} ${message.from}: ${message.text}`)
-  jQuery('#messages').append(li)
+  let template = jQuery('#message-template').html()
+  let html = Mustache.render(template, {
+    createdAt: message.createdAt,
+    from: message.from,
+    text: message.text
+  })
+  jQuery('#messages').append(html)
 })
 
 socket.on('newLocationMessage', function (message) {
-  let li = jQuery('<li></li>')
-  let link = jQuery('<a target="_blank">See on map</a>').attr('href', message.url)
-  li.text(`${message.createdAt} ${message.from}: `)
-  li.append(link)
-  jQuery('#messages').append(li)
+  let template = jQuery('#location-message-template').html()
+  let html = Mustache.render(template, {
+    createdAt: message.createdAt,
+    from: message.from,
+    url: message.url
+  })
+  jQuery('#messages').append(html)
 })
 
 jQuery('#message-form').on('submit', function(e) {
